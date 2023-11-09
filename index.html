@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dengue Disease Detector</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <div class="logo"><b>Dengue Diseae Detector</b></div>
+    </nav>
+    <main>
+      <form action="#">
+        <table>
+          <tr>
+            <td><label for="inputTemperature">Temperatur Tubuh: </label></td>
+            <td>
+              <input type="range" min="35" max="42" value="35" class="temperature-slider" name="inputTemperature" id="input-temperature" step="0.1" />
+            </td>
+            <td>
+              <div id="output-temperature"></div>
+            </td>
+          </tr>
+          <tr>
+            <td><label for="inputHeadacheLevel">Headache Level: </label></td>
+            <td><input type="number" name="inputHeadacheLevel" id="input-headache-level" step="0.5" /></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><label for="inputEyepainLevel">Level of Pain Behind The Eye:</label></td>
+            <td><input type="number" name="inputEyepainLevel" id="input-eyepain-level" step="0.5" /></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><label for="inputMuscleJointPainLevel">Level of Muscle Joint Pain: </label></td>
+            <td><input type="number" name="inputMuscleJointPainLevel" id="input-musclejointpain-level" step="0.5" /></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td><label for="inputNauseaLevel">Nausea Level: </label></td>
+            <td><input type="number" name="inputNauseaLevel" id="input-nausea-level" step="0.5" /></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Vomiting:</td>
+            <td>
+              <label for="inputVomiting">yes: </label>
+              <input type="radio" name="inputVomiting" id="vomit-yes" />
+            </td>
+            <td>
+              <label for="inputVomiting">no: </label>
+              <input type="radio" name="inputVomiting" id="vomit-no" />
+            </td>
+          </tr>
+          <tr>
+            <td>Swollen Gland:</td>
+            <td>
+              <label for="inputSwollenGland">yes: </label>
+              <input type="radio" name="inputSwollenGland" id="swollen-gland-yes" />
+            </td>
+            <td>
+              <label for="inputSwollenGland">no: </label>
+              <input type="radio" name="inputSwollenGland" id="swollen-gland-no" />
+            </td>
+          </tr>
+          <tr>
+            <td>Rash:</td>
+            <td>
+              <label for="inputRash">yes: </label>
+              <input type="radio" name="inputRash" id="rash-yes" />
+            </td>
+            <td>
+              <label for="inputRash">no: </label>
+              <input type="radio" name="inputRash" id="rash-no" />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </main>
+    <script src="myscript.js"></script>
+  </body>
+</html>
