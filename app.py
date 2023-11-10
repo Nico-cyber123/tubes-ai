@@ -13,16 +13,16 @@ def index():
             'eyepain': float(request.form['inputEyepainLevel']),
             'musclejointpain': float(request.form['inputMuscleJointPainLevel']),
             'nausea': float(request.form['inputNauseaLevel']),
-            'vomiting': request.form.get('inputVomiting') == 'yes',
-            'swollenglands': request.form.get('inputSwollenGland') == 'yes',
-            'rash': request.form.get('inputRash') == 'yes',
+            'vomiting': request.form.get('inputVomiting'),
+            'swollenglands': request.form.get('inputSwollenGland'),
+            'rash': request.form.get('inputRash'),
         }
 
         # Call the fuzzy logic function
         result = fuzzy_module.perform_fuzzy_logic(**input_data)
 
-        # Return the result as JSON
-        return jsonify({'result': result})
+        # Return the result
+        return render_template('index.html', result=result)
     
     # Render the HTML template on GET request
     return render_template('index.html')

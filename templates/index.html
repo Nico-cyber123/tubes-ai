@@ -44,6 +44,8 @@
                 id="input-headache-level"
                 step="0.5"
                 value="0"
+                min="0"
+                max="10"
               />
             </td>
             <td></td>
@@ -61,6 +63,8 @@
                 id="input-eyepain-level"
                 step="0.5"
                 value="0"
+                min="0"
+                max="10"
               />
             </td>
             <td></td>
@@ -78,6 +82,8 @@
                 id="input-musclejointpain-level"
                 step="0.5"
                 value="0"
+                min="0"
+                max="10"
               />
             </td>
             <td></td>
@@ -91,6 +97,8 @@
                 id="input-nausea-level"
                 step="0.5"
                 value="0"
+                min="0"
+                max="10"
               />
             </td>
             <td></td>
@@ -98,32 +106,37 @@
           <tr>
             <td>Vomiting:</td>
             <td>
-              <label for="inputVomiting">yes: </label>
               <input
                 type="radio"
                 name="inputVomiting"
                 id="vomit-yes"
                 value="1"
               />
+              <label for="inputVomiting">Yes</label>
             </td>
             <td>
-              <label for="inputVomiting">no: </label>
-              <input type="radio" name="inputVomiting" id="vomit-no" value="0" checked />
+              <input
+                type="radio"
+                name="inputVomiting"
+                id="vomit-no"
+                value="0"
+                checked
+              />
+              <label for="inputVomiting">No</label>
             </td>
           </tr>
           <tr>
             <td>Swollen Gland:</td>
             <td>
-              <label for="inputSwollenGland">yes: </label>
               <input
                 type="radio"
                 name="inputSwollenGland"
                 id="swollen-gland-yes"
                 value="1"
               />
+              <label for="inputSwollenGland">Yes</label>
             </td>
             <td>
-              <label for="inputSwollenGland">no: </label>
               <input
                 type="radio"
                 name="inputSwollenGland"
@@ -131,16 +144,16 @@
                 value="0"
                 checked
               />
+              <label for="inputSwollenGland">No</label>
             </td>
           </tr>
           <tr>
             <td>Rash:</td>
             <td>
-              <label for="inputRash">yes: </label>
               <input type="radio" name="inputRash" id="rash-yes" value="1" />
+              <label for="inputRash">Yes</label>
             </td>
             <td>
-              <label for="inputRash">no: </label>
               <input
                 type="radio"
                 name="inputRash"
@@ -148,6 +161,7 @@
                 value="0"
                 checked
               />
+              <label for="inputRash">No</label>
             </td>
           </tr>
           <tr>
@@ -160,7 +174,7 @@
     </main>
     <script src="{{ url_for('static', filename='myscript.js') }}"></script>
     {% if result %}
-    <p>Result: {{ result }}</p>
+    <p id="result">Result: {{ result }}</p>
     {% endif %}
   </body>
 </html>
