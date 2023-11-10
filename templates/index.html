@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dengue Disease Detector</title>
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
   <body>
     <nav>
-      <div class="logo"><b>Dengue Diseae Detector</b></div>
+      <div class="logo"><b>Dengue Disease Detector</b></div>
     </nav>
     <main>
-      <form action="#">
+      <form action="{{ url_for('index') }}" method="POST">
         <table>
           <tr>
             <td><label for="inputTemperature">Temperatur Tubuh: </label></td>
             <td>
-              <input type="range" min="35" max="42" value="35" class="temperature-slider" name="inputTemperature" id="input-temperature" step="0.1" />
+              <input type="range" min="36" max="42" value="36" class="temperature-slider" name="inputTemperature" id="input-temperature" step="0.1" />
             </td>
             <td>
               <div id="output-temperature"></div>
@@ -25,22 +25,22 @@
           </tr>
           <tr>
             <td><label for="inputHeadacheLevel">Headache Level: </label></td>
-            <td><input type="number" name="inputHeadacheLevel" id="input-headache-level" step="0.5" /></td>
+            <td><input type="number" name="inputHeadacheLevel" id="input-headache-level" step="0.5" value="0" /></td>
             <td></td>
           </tr>
           <tr>
             <td><label for="inputEyepainLevel">Level of Pain Behind The Eye:</label></td>
-            <td><input type="number" name="inputEyepainLevel" id="input-eyepain-level" step="0.5" /></td>
+            <td><input type="number" name="inputEyepainLevel" id="input-eyepain-level" step="0.5" value="0" /></td>
             <td></td>
           </tr>
           <tr>
             <td><label for="inputMuscleJointPainLevel">Level of Muscle Joint Pain: </label></td>
-            <td><input type="number" name="inputMuscleJointPainLevel" id="input-musclejointpain-level" step="0.5" /></td>
+            <td><input type="number" name="inputMuscleJointPainLevel" id="input-musclejointpain-level" step="0.5" value="0" /></td>
             <td></td>
           </tr>
           <tr>
             <td><label for="inputNauseaLevel">Nausea Level: </label></td>
-            <td><input type="number" name="inputNauseaLevel" id="input-nausea-level" step="0.5" /></td>
+            <td><input type="number" name="inputNauseaLevel" id="input-nausea-level" step="0.5" value="0" /></td>
             <td></td>
           </tr>
           <tr>
@@ -51,7 +51,7 @@
             </td>
             <td>
               <label for="inputVomiting">no: </label>
-              <input type="radio" name="inputVomiting" id="vomit-no" />
+              <input type="radio" name="inputVomiting" id="vomit-no" checked />
             </td>
           </tr>
           <tr>
@@ -62,7 +62,7 @@
             </td>
             <td>
               <label for="inputSwollenGland">no: </label>
-              <input type="radio" name="inputSwollenGland" id="swollen-gland-no" />
+              <input type="radio" name="inputSwollenGland" id="swollen-gland-no" checked />
             </td>
           </tr>
           <tr>
@@ -73,12 +73,17 @@
             </td>
             <td>
               <label for="inputRash">no: </label>
-              <input type="radio" name="inputRash" id="rash-no" />
+              <input type="radio" name="inputRash" id="rash-no" checked />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="submit" name="Submit" id="submit" />
             </td>
           </tr>
         </table>
       </form>
     </main>
-    <script src="myscript.js"></script>
+    <script src="{{ url_for('static', filename='myscript.js') }}"></script>
   </body>
 </html>
