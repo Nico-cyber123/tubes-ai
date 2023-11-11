@@ -1,3 +1,4 @@
+from re import T
 import numpy as np
 import skfuzzy as fuzz
 import skfuzzy.membership as mf
@@ -224,20 +225,52 @@ def perform_fuzzy_logic(temperature, headache, eyepain, musclejointpain, nausea,
     rule28 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['light_fever'], headache_membership['medium']), eyepain_membership['low']), musclejointpain_membership['medium']), swollenglands_membership['yes']), risk_high)
     rule29 = np.fmin(np.fmin(np.fmin(temperature_membership['normal'], musclejointpain_membership['low']), swollenglands_membership['yes']), risk_not)
     rule30 = np.fmin(np.fmin(np.fmin(temperature_membership['normal'], musclejointpain_membership['medium']), rash_membership['yes']), risk_not)
-
+    rule31 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['severe']), eyepain_membership['low']), musclejointpain_membership['low']), nausea_membership['low']), vomiting_membership['yes']), swollenglands_membership['yes']), rash_membership['no']), risk_moderate)
+    rule32 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['medium']), eyepain_membership['severe']), musclejointpain_membership['severe']), nausea_membership['severe']), vomiting_membership['yes']), swollenglands_membership['no']), rash_membership['yes']), risk_veryHigh)
+    rule33 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['medium']), eyepain_membership['medium']), musclejointpain_membership['medium']), nausea_membership['medium']), vomiting_membership['no']), swollenglands_membership['yes']), rash_membership['yes']), risk_high)
+    rule34 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['light_fever'], headache_membership['severe']), eyepain_membership['severe']), musclejointpain_membership['low']), nausea_membership['severe']), vomiting_membership['yes']), swollenglands_membership['no']), rash_membership['no']), risk_low)
+    rule35 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['severe']), eyepain_membership['low']), musclejointpain_membership['low']), nausea_membership['low']), vomiting_membership['no']), swollenglands_membership['no']), rash_membership['yes']), risk_high)
+    rule36 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['severe']), eyepain_membership['medium']), musclejointpain_membership['medium']), nausea_membership['medium']), vomiting_membership['no']), swollenglands_membership['no']), rash_membership['yes']), risk_high)
+    rule37 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['severe']), eyepain_membership['low']), musclejointpain_membership['medium']), nausea_membership['severe']), vomiting_membership['yes']), swollenglands_membership['yes']), rash_membership['yes']), risk_veryHigh)
+    rule38 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['severe']), eyepain_membership['low']), musclejointpain_membership['severe']), nausea_membership['medium']), vomiting_membership['yes']), swollenglands_membership['yes']), rash_membership['no']), risk_high)
+    rule39 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['severe']), eyepain_membership['severe']), musclejointpain_membership['medium']), nausea_membership['severe']), vomiting_membership['no']), swollenglands_membership['no']), rash_membership['yes']), risk_high)
+    rule40 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['severe']), eyepain_membership['severe']), musclejointpain_membership['low']), nausea_membership['medium']), vomiting_membership['yes']), swollenglands_membership['yes']), rash_membership['yes']), risk_veryHigh)
+    rule41 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['severe']), eyepain_membership['medium']), musclejointpain_membership['medium']), nausea_membership['medium']), vomiting_membership['yes']), swollenglands_membership['yes']), rash_membership['yes']), risk_veryHigh)
+    rule42 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['severe']), eyepain_membership['severe']), musclejointpain_membership['severe']), rash_membership['yes']), risk_veryHigh)
+    rule43 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['severe']), eyepain_membership['severe']), musclejointpain_membership['medium']), vomiting_membership['yes']), rash_membership['yes']), risk_veryHigh)
+    rule44 = np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(np.fmin(temperature_membership['high_fever'], headache_membership['medium']), eyepain_membership['medium']), musclejointpain_membership['medium']), nausea_membership['severe']), rash_membership['yes']), risk_high)
 
     out_not = np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(rule1, rule2),rule3),rule11),rule16),rule29), rule30)
-    out_low = np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(rule4,rule8),rule10), rule17), rule22), rule24)
-    out_moderate = np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(rule5, rule6),rule9), rule12), rule25), rule27)
-    out_high = np.fmax(np.fmax(np.fmax(rule7, rule13),rule26),rule28)
-    out_veryHigh = np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(rule14,rule15),rule18),rule19),rule20),rule21),rule23)
+    out_low = np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(rule4,rule8),rule10), rule17), rule22), rule24), rule34)
+    out_moderate = np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(rule5, rule6),rule9), rule12), rule25), rule27),rule31)
+    out_high = np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(rule7, rule13),rule26),rule28), rule33), rule35), rule36), rule38), rule39),rule44)
+    out_veryHigh = np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(np.fmax(rule14,rule15),rule18),rule19),rule20),rule21),rule23),rule32),rule37),rule40), rule41),rule42),rule43)
 
-    risk0 = np.zeros_like(y_risk)
+    # risk0 = np.zeros_like(y_risk)
 
     out_risk = np.fmax(np.fmax(np.fmax(np.fmax(out_not, out_low), out_moderate), out_high), out_veryHigh)
 
     defuzzified  = fuzz.defuzz(y_risk, out_risk, 'centroid')
 
     result = fuzz.interp_membership(y_risk, out_risk, defuzzified)
-
-    return defuzzified
+    
+    rounded_result = round(result, 5)
+    
+    text = "default"
+    
+    if(rounded_result > 0.5):
+        text = "Anda berisiko tinggi terkena demam berdarah!"
+    elif(rounded_result <= 0.5 and rounded_result > 0.25):
+        text = "Anda kemungkinan terkena demam berdarah!"
+    elif(rounded_result > 0 and rounded_result < 0.25): 
+        text = "Anda kemungkinan sangat kecil terkena demam berdarah!"
+    else: 
+        text = "Anda tidak terkena demam berdarah!"
+        
+    data = "Temperature: {}, Headache: {}, Eye Pain: {}, " \
+            "Muscle and Joint Pain: {}, Nausea: {}, Vomiting: {}, " \
+            "Swollen Glands: {}, Rash: {}".format(temperature, headache, eyepain,
+                                                  musclejointpain, nausea, vomiting,
+                                                  swollenglands, rash)
+    
+    return text, data

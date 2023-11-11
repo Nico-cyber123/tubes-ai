@@ -27,7 +27,7 @@ main form {
   box-shadow: 5px 5px 10px rgb(98, 98, 98);
 }
 
-#result {
+#result, #data {
   text-align: center;
   font-size: 1.3em;
 }
