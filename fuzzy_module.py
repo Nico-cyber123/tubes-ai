@@ -848,27 +848,154 @@ def perform_fuzzy_logic(
         risk_high,
     )
 
+    rule45 = np.fmin(
+        np.fmin(
+            np.fmin(
+                np.fmin(
+                    np.fmin(
+                        temperature_membership["normal"], headache_membership["mild"]
+                    ),
+                    eyepain_membership["low"],
+                ),
+                musclejointpain_membership["low"],
+            ),
+            nausea_membership["low"],
+        ),
+        risk_not,
+    )
+
+    rule46 = np.fmin(
+        np.fmin(temperature_membership["normal"], headache_membership["mild"]), risk_not
+    )
+    rule47 = np.fmin(
+        np.fmin(
+            np.fmin(
+                np.fmin(
+                    np.fmin(
+                        np.fmin(
+                            temperature_membership["light_fever"],
+                            headache_membership["medium"],
+                        ),
+                        eyepain_membership["low"],
+                    ),
+                    musclejointpain_membership["severe"],
+                ),
+                nausea_membership["low"],
+            ),
+            rash_membership["no"],
+        ),
+        risk_low,
+    )
+
+    rule48 = np.fmin(
+        np.fmin(
+            np.fmin(
+                np.fmin(
+                    np.fmin(
+                        np.fmin(
+                            temperature_membership["light_fever"],
+                            headache_membership["severe"],
+                        ),
+                        eyepain_membership["low"],
+                    ),
+                    musclejointpain_membership["low"],
+                ),
+                nausea_membership["severe"],
+            ),
+            vomiting_membership["yes"],
+        ),
+        risk_moderate,
+    )
+
+    rule49 = np.fmin(
+        np.fmin(
+            np.fmin(
+                np.fmin(
+                    np.fmin(
+                        np.fmin(
+                            temperature_membership["normal"],
+                            headache_membership["severe"],
+                        ),
+                        eyepain_membership["medium"],
+                    ),
+                    musclejointpain_membership["medium"],
+                ),
+                nausea_membership["low"],
+            ),
+            rash_membership["yes"],
+        ),
+        risk_moderate,
+    )
+
+    rule50 = np.fmin(
+        np.fmin(
+            np.fmin(
+                np.fmin(
+                    np.fmin(
+                        np.fmin(
+                            temperature_membership["light_fever"],
+                            headache_membership["mild"],
+                        ),
+                        eyepain_membership["low"],
+                    ),
+                    musclejointpain_membership["medium"],
+                ),
+                nausea_membership["low"],
+            ),
+            rash_membership["no"],
+        ),
+        risk_not,
+    )
+
     out_not = np.fmax(
         np.fmax(
-            np.fmax(np.fmax(np.fmax(np.fmax(rule1, rule2), rule3), rule11), rule16),
-            rule29,
+            np.fmax(
+                np.fmax(
+                    np.fmax(
+                        np.fmax(
+                            np.fmax(np.fmax(np.fmax(rule1, rule2), rule3), rule11),
+                            rule16,
+                        ),
+                        rule29,
+                    ),
+                    rule30,
+                ),
+                rule45,
+            ),
+            rule46,
         ),
-        rule30,
+        rule50,
     )
+
     out_low = np.fmax(
         np.fmax(
-            np.fmax(np.fmax(np.fmax(np.fmax(rule4, rule8), rule10), rule17), rule22),
-            rule24,
+            np.fmax(
+                np.fmax(
+                    np.fmax(np.fmax(np.fmax(rule4, rule8), rule10), rule17), rule22
+                ),
+                rule24,
+            ),
+            rule34,
         ),
-        rule34,
+        rule47,
     )
+    
     out_moderate = np.fmax(
         np.fmax(
-            np.fmax(np.fmax(np.fmax(np.fmax(rule5, rule6), rule9), rule12), rule25),
-            rule27,
+            np.fmax(
+                np.fmax(
+                    np.fmax(
+                        np.fmax(np.fmax(np.fmax(rule5, rule6), rule9), rule12), rule25
+                    ),
+                    rule27,
+                ),
+                rule31,
+            ),
+            rule48,
         ),
-        rule31,
+        rule49,
     )
+    
     out_high = np.fmax(
         np.fmax(
             np.fmax(
@@ -888,6 +1015,7 @@ def perform_fuzzy_logic(
         ),
         rule44,
     )
+    
     out_veryHigh = np.fmax(
         np.fmax(
             np.fmax(
