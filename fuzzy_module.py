@@ -947,24 +947,53 @@ def perform_fuzzy_logic(
         risk_not,
     )
 
+    rule51 = np.fmin(
+        np.fmin(
+            np.fmin(
+                np.fmin(
+                    np.fmin(
+                        np.fmin(
+                            np.fmin(
+                                np.fmin(
+                                    temperature_membership["normal"],
+                                    headache_membership["mild"],
+                                ),
+                                eyepain_membership["low"],
+                            ),
+                            musclejointpain_membership["low"],
+                        ),
+                        nausea_membership["low"],
+                    ),
+                    vomiting_membership["no"],
+                ),
+                swollenglands_membership["no"],
+            ),
+            rash_membership["no"],
+        ),
+        risk_not,
+    )
+
     out_not = np.fmax(
         np.fmax(
             np.fmax(
                 np.fmax(
                     np.fmax(
                         np.fmax(
-                            np.fmax(np.fmax(np.fmax(rule1, rule2), rule3), rule11),
-                            rule16,
+                            np.fmax(
+                                np.fmax(np.fmax(np.fmax(rule1, rule2), rule3), rule11),
+                                rule16,
+                            ),
+                            rule29,
                         ),
-                        rule29,
+                        rule30,
                     ),
-                    rule30,
+                    rule45,
                 ),
-                rule45,
+                rule46,
             ),
-            rule46,
+            rule50,
         ),
-        rule50,
+        rule51,
     )
 
     out_low = np.fmax(
@@ -979,7 +1008,7 @@ def perform_fuzzy_logic(
         ),
         rule47,
     )
-    
+
     out_moderate = np.fmax(
         np.fmax(
             np.fmax(
@@ -995,7 +1024,7 @@ def perform_fuzzy_logic(
         ),
         rule49,
     )
-    
+
     out_high = np.fmax(
         np.fmax(
             np.fmax(
@@ -1015,7 +1044,7 @@ def perform_fuzzy_logic(
         ),
         rule44,
     )
-    
+
     out_veryHigh = np.fmax(
         np.fmax(
             np.fmax(
@@ -1057,20 +1086,23 @@ def perform_fuzzy_logic(
 
     defuzzified = fuzz.defuzz(y_risk, out_risk, "centroid")
 
-    result = fuzz.interp_membership(y_risk, out_risk, defuzzified)
-
-    rounded_result = round(result, 5)
+    # result = fuzz.interp_membership(y_risk, out_risk, defuzzified)
 
     text = "default"
 
-    if rounded_result > 0.5:
-        text = "Anda berisiko tinggi terkena demam berdarah!"
-    elif rounded_result <= 0.5 and rounded_result > 0.25:
-        text = "Anda kemungkinan terkena demam berdarah!"
-    elif rounded_result > 0 and rounded_result < 0.25:
-        text = "Anda kemungkinan sangat kecil terkena demam berdarah!"
+    if defuzzified is not None:
+        if defuzzified >= 40:
+            text = "Anda terkena demam berdarah!"
+        elif defuzzified >= 30:
+            text = "Anda berisiko tinggi terkena demam berdarah!"
+        elif defuzzified >= 20:
+            text = "Anda berisiko sedang terkena demam berdarah!"
+        elif defuzzified >= 10:
+            text = "Anda berisiko kecil terkena demam berdarah"
+        else:
+            text = "Anda tidak terkena demam berdarah!"
     else:
-        text = "Anda tidak terkena demam berdarah!"
+        text = "Sistem kami tidak dapat memproses input anda."
 
     data = (
         "Temperature: {}, Headache: {}, Eye Pain: {}, "
