@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&family=Roboto&display=swap");
 body {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
 }
@@ -23,4 +25,9 @@ main form {
   border-radius: 20px;
   padding: 20px;
   box-shadow: 5px 5px 10px rgb(98, 98, 98);
+}
+
+#result, #data {
+  text-align: center;
+  font-size: 1.3em;
 }
